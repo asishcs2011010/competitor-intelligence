@@ -23,9 +23,9 @@ async function scrapeCompetitor(competitor, previousHashes = {}) {
     try {
       const result = await firecrawl.v1.scrapeUrl(url, {
         formats: ["markdown"],
-        onlyMainContent: true,  // skips nav, footer, cookie banners
-        waitFor: 5000,
-      });
+        onlyMainContent: competitor.onlyMainContent !== false,
+        waitFor: 8000,
+        });
 
       const raw = result?.markdown || "No content found.";
 
@@ -45,7 +45,7 @@ async function scrapeCompetitor(competitor, previousHashes = {}) {
         continue;
       }
 
-      const content = raw.slice(0, 8000);
+      const content = raw.slice(0, competitor.sliceSize || 8000);
       const hash = hashContent(content);
       const key = `${competitor.name}__${section}`;
       hashes[key] = hash;

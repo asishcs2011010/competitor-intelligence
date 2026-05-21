@@ -14,6 +14,8 @@ async function run() {
   const previousDigest = await getLastWeekDigest();
   const previousHashes = await getLastWeekHashes();
 
+  console.log("Previous digest found:", previousDigest ? "YES" : "NO");
+  
   console.log("📡 Scraping competitors...");
   const { scrapedData, hashes } = await scrapeAll(previousHashes);
 

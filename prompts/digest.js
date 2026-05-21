@@ -11,7 +11,9 @@ CRITICAL INSTRUCTION: You have last week's digest above. For each competitor, yo
 2. Only surface genuinely NEW information not present in last week's digest
 3. If nothing changed, say explicitly: "No new activity since last week's digest."
 4. Do NOT repeat last week's signals, even if the scraped page still shows them
-5. The goal is a DELTA report — what changed this week, not a full re-summary`
+5. The goal is a DELTA report — what changed this week, not a full re-summary
+6. MANDATORY: Always output all 5 sections — Testlio, QA Wolf, Qualitest, Infosys BPM, Cigniti. Never omit a section even if nothing changed.`
+
     : `Note: This is the first run — no previous digest to compare against. Report everything you find.`;
 
   return `IMPORTANT: Output ONLY the competitor sections. Do not add any title, header, or preamble before "## Testlio".
