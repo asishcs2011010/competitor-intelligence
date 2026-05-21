@@ -33,7 +33,6 @@ function parseDigest(markdown) {
 
       const matchCount = COMPETITOR_NAMES.filter(c => nameLower.includes(c)).length;
       const isCompetitor = matchCount === 1;
-
       const isMarket = nameLower.includes("market pulse");
 
       if (isCompetitor || isMarket) {
@@ -80,6 +79,12 @@ function parseDigest(markdown) {
       continue;
     }
 
+    // Catch plain text in whatsNew (e.g. "No new activity since last week's digest.")
+    if (current.type === "competitor" && currentField === "whatsNew" && trimmed) {
+      current.whatsNew.push(trimmed);
+      continue;
+    }
+
     if (current.type === "competitor") {
       const content = trimmed.replace(/\*\*(.*?)\*\*/g, "<strong style='color:#93c5fd;'>$1</strong>");
       if (currentField === "keySignal") current.keySignal += content + " ";
@@ -102,7 +107,9 @@ function cardInner(c) {
     !c.whatsNew[0].toLowerCase().includes("no significant") &&
     !c.whatsNew[0].toLowerCase().includes("no substantive") &&
     !c.whatsNew[0].toLowerCase().includes("no new") &&
-    !c.whatsNew[0].toLowerCase().includes("no accessible");
+    !c.whatsNew[0].toLowerCase().includes("no accessible") &&
+    !c.whatsNew[0].toLowerCase().includes("no new activity") &&
+    !c.whatsNew[0].toLowerCase().includes("no competitive");
 
   const headerBg   = hasActivity ? "#1e3a8a" : "#1e293b";
   const borderClr  = hasActivity ? "#2563eb" : "#1e293b";
@@ -118,13 +125,13 @@ function cardInner(c) {
        </ul>`
     : `<p style="font-size:12px;color:#475569;margin:0 0 14px 0;font-style:italic;">No significant activity this week.</p>`;
 
-  const keySignalHtml = c.keySignal.trim() ? `
+  const keySignalHtml = c.keySignal.trim() && !c.keySignal.toLowerCase().includes("no new signals") ? `
     <div style="background:#172554;border-left:3px solid #3b82f6;padding:10px 12px;margin-bottom:8px;border-radius:0 4px 4px 0;">
       <div style="font-size:9px;font-weight:700;color:#60a5fa;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:3px;">📡 Key Signal</div>
       <div style="font-size:12px;color:#bfdbfe;line-height:1.6;">${c.keySignal.trim()}</div>
     </div>` : "";
 
-  const watchOutHtml = c.watchOut.trim() ? `
+  const watchOutHtml = c.watchOut.trim() && !c.watchOut.toLowerCase().includes("no new signals") ? `
     <div style="background:#1c0a00;border-left:3px solid #f97316;padding:10px 12px;border-radius:0 4px 4px 0;">
       <div style="font-size:9px;font-weight:700;color:#fb923c;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:3px;">⚠️ Watch Out</div>
       <div style="font-size:12px;color:#fed7aa;line-height:1.6;">${c.watchOut.trim()}</div>
