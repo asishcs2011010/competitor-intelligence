@@ -17,7 +17,7 @@ async function sendDigestEmail(digestMarkdown) {
 
 function parseDigest(markdown) {
   const sections = [];
-  const lines = markdown.split("\n");
+  const lines = markdown.split("\n").map(l => l.replace(/\r/g, ""));
   let current = null;
   let currentField = null;
 

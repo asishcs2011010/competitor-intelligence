@@ -20,9 +20,7 @@ async function run() {
   console.log("Previous LinkedIn post IDs:", previousPostIds.length);
 
   console.log("📡 Scraping competitors...");
-
   const { scrapedData, hashes } = await scrapeAll(previousHashes);
-
 
   console.log("🔗 Scraping LinkedIn...");
   const { linkedInData, allPostIds } = await scrapeLinkedIn(previousPostIds);
@@ -60,4 +58,8 @@ async function run() {
   console.log("🎉 Done!");
 }
 
-run();
+if (require.main === module) {
+  run();
+}
+
+module.exports = { run };
