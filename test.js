@@ -1,9 +1,8 @@
 require("dotenv").config();
-const { scrapeAll } = require("./scrapers/website");
+const { sendDigestEmail } = require("./email/send");
 
 async function test() {
-  const output = await scrapeAll();
-  console.log(output.slice(0, 1000)); // print first 1000 chars
+  await sendDigestEmail("# Test Digest\n\n## Testlio\n\n**What's New**\n- Test bullet point\n\n**Key Signal**\nThis is a test signal.\n\n**Watch Out For**\nNothing for now.");
 }
 
 test();
