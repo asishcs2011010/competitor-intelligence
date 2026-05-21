@@ -48,4 +48,31 @@ async function saveHashes(weekOf, hashes) {
   if (error) console.error("Failed to save hashes:", error.message);
 }
 
-module.exports = { saveDigest, getLastWeekDigest, getLastWeekHashes, saveHashes };
+async function getLastWeekLinkedInIds() {
+  const { data, error } = await supabase
+    .from("digests")
+    .select("linkedin_post_ids")
+    .order("created_at", { ascending: false })
+    .limit(1)
+    .single();
+  if (error || !data) return [];
+  return data.linkedin_post_ids || [];
+}
+
+async function saveLinkedInIds(weekOf, ids) {
+  const { error } = await supabase
+    .from("digests")
+    .update({ linkedin_post_ids: ids })
+    .eq("week_of", weekOf);
+  if (error) console.error("Failed to save LinkedIn IDs:", error.message);
+  else console.log("LinkedIn post IDs saved.");
+}
+
+module.exports = {
+  saveDigest,
+  getLastWeekDigest,
+  getLastWeekHashes,
+  saveHashes,
+  getLastWeekLinkedInIds,
+  saveLinkedInIds,
+};

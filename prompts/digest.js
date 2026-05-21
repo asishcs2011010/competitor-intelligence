@@ -98,6 +98,7 @@ Produce clean markdown EXACTLY as follows. No preamble, no explanation, just the
 - Insight over summary. "They published a blog" is useless. "4 blogs on AI testing this week suggests imminent product launch" is useful.
 - Key Signal and Watch Out must be plain text sentences — no bullet points.
 - When a competitor section is marked [NO CHANGE SINCE LAST WEEK] in the scraped data, that competitor has no new activity. Output "No new activity since last week's digest." for What's New, and "No new signals this week." for both Key Signal and Watch Out.
+- LinkedIn Activity section contains recent posts from each competitor's LinkedIn page — treat these as additional signals alongside the scraped website data. LinkedIn posts may surface new campaigns, product announcements, or hiring signals not visible on the website.
 - Market Pulse themes must only reflect patterns visible across this week's scraped data. Do not invent seasonal patterns or industry trends not present in the data.
 - Be ruthlessly concise. If a section has no data, say so in one line.`;
 }

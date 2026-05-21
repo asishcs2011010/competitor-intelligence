@@ -16,6 +16,7 @@
     "@mendable/firecrawl-js": "^4.24.1",
     "@sendgrid/mail": "^8.1.6",
     "@supabase/supabase-js": "^2.105.4",
+    "apify-client": "^2.23.3",
     "axios": "^1.16.1",
     "dotenv": "^17.4.2",
     "groq-sdk": "^1.2.0",
