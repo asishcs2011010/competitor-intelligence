@@ -1,7 +1,7 @@
 # 🧠 Qapitol Intel Agent
 ### AI-Powered Competitor & Market Intelligence — Automated Weekly Digest
 
-> Built for Qapitol QA's AI Adoption Engineer assessment. Monitors 5 competitors across websites, news, LinkedIn, resources, and events — synthesises strategic insights using Claude AI — delivers a structured HTML email digest every Monday morning. Fully autonomous. Zero babysitting.
+> Monitors 5 competitors across websites, news, LinkedIn, resources, and events — synthesises strategic insights using Claude AI — delivers a structured HTML email digest every Monday morning. Fully autonomous. Zero babysitting.
 
 ---
 
@@ -304,8 +304,3 @@ Add `SLACK_WEBHOOK_URL` to your `.env` and Railway variables.
 
 ---
 
-## 🧑‍💻 Author
-
-Built by **Asish** for the Qapitol QA AI Adoption Engineer Assessment — May 2026.
-
-> *"A focused system that does 5 competitors really well — with clean output and a reliable schedule."*
